@@ -1,9 +1,8 @@
-
 import json
 import urllib.request
 
 def is_prime(n):
-    # By definition, prime numbers are greater than 1.
+    # Prime Numbers
     if n < 2:
         return False
     for i in range(2, int(n**0.5) + 1):
@@ -12,14 +11,13 @@ def is_prime(n):
     return True
 
 def is_perfect(n):
-    # Perfect numbers are typically defined for positive integers.
+    # Perfect numbers 
     if n < 2:
         return False
     divisors = [i for i in range(1, n) if n % i == 0]
     return sum(divisors) == n
 
 def is_armstrong(n):
-    # Armstrong numbers are usually considered for non-negative numbers.
     if n < 0:
         return False
     digits = list(str(n))
@@ -43,7 +41,7 @@ def lambda_handler(event, context):
         properties.append("armstrong")
     properties.append("even" if number % 2 == 0 else "odd")
     
-    # Get a fun fact from the Numbers API using urllib.request
+    # Gets a fun fact from the Numbers API using urllib.request
     try:
         with urllib.request.urlopen(f"http://numbersapi.com/{number}/math") as response:
             fun_fact = response.read().decode('utf-8')
